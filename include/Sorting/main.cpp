@@ -20,7 +20,6 @@
 
 #include <iostream>
 #include "SortingAlgorithms.h"
-#include "version.h"
 
 //exemple of using
 int main() {
@@ -40,8 +39,6 @@ int main() {
         std::cout << i << ' ';
     }
     std::cout <<std::endl;
-
-    std::cout << PROJECT_VERSION_PATCH;
 
     return 0;
 }
