@@ -36,3 +36,4 @@ script:
   - make
   - cd Tests
   - ctest -R SortingTests
+  - bash <(curl -s https://codecov.io/bash)
