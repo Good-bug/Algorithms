@@ -73,4 +73,32 @@ namespace Algorithms {
             }
         }
     };
+
+    class Quicksort :public SortingStrategy {
+    public:
+        void sort(std::vector<int> &vec) override {
+            qSort(vec, 0, static_cast<int>(vec.size()) - 1);
+        }
+    private:
+        void qSort(std::vector<int> &vector, int l, int r){
+            if(l < r) {
+                auto p = partiotion(vector, l, r);
+                qSort(vector, l, p - 1);
+                qSort(vector, p + 1, r);
+            }
+        }
+
+        static int partiotion(std::vector<int> &vector, int l, int r) {
+            auto p = vector[r];
+            auto i = l;
+            for(int j = l; j < r; ++j){
+                if(vector[j] < p){
+                    std::swap(vector[i],vector[j]);
+                    ++i;
+                }
+            }
+            std::swap(vector[i], vector[r]);
+            return i;
+        }
+    };
 }

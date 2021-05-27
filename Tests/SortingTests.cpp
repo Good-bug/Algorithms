@@ -36,6 +36,7 @@ TEST_CASE("SortingTests", "[Sort]") {
             {new SelectionSort()  , "SelectionSort"   }
            ,{new BubbleSort()     , "BubbleSort"      }
            ,{new InsertionSort()  , "InsertionSort"   }
+           ,{new Quicksort()      , "Quicksort"       }
     };
 
     std::vector<SortingTestcase> testcases {
