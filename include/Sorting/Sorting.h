@@ -23,13 +23,16 @@
 #include <vector>
 
 namespace Algorithms{
-//using simple strategy pattern to manage sorting algorithms
+///using simple strategy pattern to manage sorting algorithms
 class SortingStrategy{
 public:
     virtual ~SortingStrategy()  = default;
+    //TODO: add meta programming to take first/last iterator and optional compare function
     virtual void sort(std::vector<int> &vec) = 0;
 };
 
+///init Sorting and set Sorting Algorithm,
+///the call sort(vector<int>) to sort vector
 class Sorting{
 public:
     explicit Sorting(SortingStrategy *s = nullptr): strategy(s){

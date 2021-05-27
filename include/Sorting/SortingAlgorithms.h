@@ -24,10 +24,12 @@
 #include "Sorting.h"
 
 namespace Algorithms {
+    ///Sorting algorithms must inheritance SortingStrategy class,
+    ///so that it would be possible to transmit sorting algorithm to Sorting class
     class SelectionSort : public SortingStrategy {
     public:
+        ///https://www.geeksforgeeks.org/selection-sort/
         void sort(std::vector<int> &vec) override {
-
             int size = vec.size();
             int min;
 
@@ -44,6 +46,7 @@ namespace Algorithms {
 
     class BubbleSort : public SortingStrategy {
     public:
+        ///https://www.geeksforgeeks.org/bubble-sort/
         void sort(std::vector<int> &vec) override {
             int size = vec.size();
 
@@ -58,6 +61,7 @@ namespace Algorithms {
 
     class InsertionSort : public SortingStrategy {
     public:
+        ///https://www.geeksforgeeks.org/insertion-sort/
         void sort(std::vector<int> &vec) override {
             int size = vec.size();
 
@@ -76,6 +80,7 @@ namespace Algorithms {
 
     class Quicksort :public SortingStrategy {
     public:
+        ///https://www.geeksforgeeks.org/quick-sort/
         void sort(std::vector<int> &vec) override {
             qSort(vec, 0, static_cast<int>(vec.size()) - 1);
         }
