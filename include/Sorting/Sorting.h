@@ -21,21 +21,18 @@
 #pragma once
 
 #include <vector>
+#include "SortingAlgorithms.h"
 
 namespace Algorithms{
-///using simple strategy pattern to manage sorting algorithms
-class SortingStrategy{
-public:
-    virtual ~SortingStrategy()  = default;
-    //TODO: add meta programming to take first/last iterator and optional compare function
-    virtual void sort(std::vector<int> &vec) = 0;
-};
 
 ///init Sorting and set Sorting Algorithm,
 ///the call sort(vector<int>) to sort vector
 class Sorting{
 public:
-    explicit Sorting(SortingStrategy *s = nullptr): strategy(s){
+    explicit Sorting(SortingStrategy *s = new SelectionSort): strategy(s){
+        if (isEmpty(s)){
+            strategy = new SelectionSort;
+        }
     };
 
     ~Sorting(){
@@ -43,16 +40,26 @@ public:
     }
 
     void setStrategy(SortingStrategy *s){
-        delete this->strategy;
-        std::swap(strategy, s);
+        if (!isEmpty(s) && s != strategy){
+            delete this->strategy;
+            std::swap(strategy, s);
+        }
     }
 
     void sort(std::vector<int> &vec){
-        if(strategy)
-            strategy->sort(vec);
+        strategy->sort(vec);
     };
 
 private:
+    constexpr bool isEmpty(SortingStrategy *s){
+        if(s != nullptr){
+            return false;
+        } else {
+            std::clog << "Algorithms::Sorting::isEmpty(SortingStrategy *s):\n\tSortingStrategy *strategy: can't by nullptr\n";
+            return true;
+        }
+    }
+
     SortingStrategy *strategy;
 };
 }

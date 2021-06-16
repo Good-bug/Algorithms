@@ -21,7 +21,7 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 
 #include <catch2/catch.hpp>
-#include <SortingAlgorithms.h>
+#include <Sorting.h>
 
 using namespace Algorithms;
 
@@ -37,6 +37,7 @@ TEST_CASE("SortingTests", "[Sort]") {
            ,{new BubbleSort()     , "BubbleSort"      }
            ,{new InsertionSort()  , "InsertionSort"   }
            ,{new Quicksort()      , "Quicksort"       }
+           ,{nullptr              , "nullptr"}
     };
 
     std::vector<SortingTestcase> testcases {
@@ -69,6 +70,7 @@ TEST_CASE("SortingTests", "[Sort]") {
 
     for(auto [strategy, name] : strategies) {
         Sorting mySort(strategy);
+        mySort.setStrategy(strategy);
 
         SECTION(name) {
             for(auto [_case, unsorted, sorted] : testcases) {

@@ -21,9 +21,17 @@
 #pragma once
 
 #include <iostream>
-#include "Sorting.h"
 
 namespace Algorithms {
+
+    ///using simple strategy pattern to manage sorting algorithms
+    class SortingStrategy{
+    public:
+        virtual ~SortingStrategy()  = default;
+        //TODO: add meta programming to take first/last iterator and optional compare function
+        virtual void sort(std::vector<int> &vec) = 0;
+    };
+
     ///Sorting algorithms must inheritance SortingStrategy class,
     ///so that it would be possible to transmit sorting algorithm to Sorting class
     class SelectionSort : public SortingStrategy {
