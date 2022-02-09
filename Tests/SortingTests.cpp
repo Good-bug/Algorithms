@@ -37,7 +37,7 @@ TEST_CASE("SortingTests", "[Sort]") {
            ,{new BubbleSort()     , "BubbleSort"      }
            ,{new InsertionSort()  , "InsertionSort"   }
            ,{new Quicksort()      , "Quicksort"       }
-           ,{nullptr              , "nullptr"}
+        //    ,{nullptr              , "nullptr"}
     };
 
     std::vector<SortingTestcase> testcases {
@@ -69,13 +69,10 @@ TEST_CASE("SortingTests", "[Sort]") {
     };
 
     for(auto [strategy, name] : strategies) {
-        Sorting mySort(strategy);
-        mySort.setStrategy(strategy);
-
         SECTION(name) {
             for(auto [_case, unsorted, sorted] : testcases) {
                 SECTION(_case){
-                    mySort.sort(unsorted);
+                    Sorting::sort(unsorted, strategy);
 
                     REQUIRE(unsorted == sorted);
                 }

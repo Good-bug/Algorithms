@@ -26,10 +26,10 @@
 namespace Algorithms{
 
 ///init Sorting and set Sorting Algorithm,
-///the call sort(vector<int>) to sort vector
+///the call Sorting::sort(vector<int>, SortingStrategy(optional)) to sort vector
 class Sorting{
 public:
-    explicit Sorting(SortingStrategy *s = new SelectionSort): strategy(s){
+    explicit Sorting(SortingStrategy *s): strategy(s){
         if (isEmpty(s)){
             strategy = new SelectionSort;
         }
@@ -46,11 +46,16 @@ public:
         }
     }
 
-    void sort(std::vector<int> &vec){
+    static void sort(std::vector<int> &vec, SortingStrategy *s = new SelectionSort) {
+        Sorting sorting(s);
+        sorting._sort(vec);
+    }
+
+private:
+    void _sort(std::vector<int> &vec){
         strategy->sort(vec);
     };
 
-private:
     constexpr bool isEmpty(SortingStrategy *s){
         if(s != nullptr){
             return false;
